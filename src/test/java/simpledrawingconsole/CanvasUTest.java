@@ -18,7 +18,7 @@ public class CanvasUTest {
                         "|                    |\n" +
                         "|                    |\n" +
                         "|                    |\n" +
-                        "----------------------";
+                        "----------------------\n";
 
         assertEquals(expectedCanvas, canvas.toString());
     }
