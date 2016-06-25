@@ -645,4 +645,18 @@ public class CanvasUTest {
 
         assertEquals(expectedCanvas, canvas.toString());
     }
+
+    @Test
+    public void fillThrowsExceptionForVectorOutsideOfCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        try {
+            canvas.fill(new Vector(11, 0), '&');
+            fail("Should not be able to fill spaces outside of canvas");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Fill vector must be inside canvas", e.getMessage());
+        }
+    }
 }

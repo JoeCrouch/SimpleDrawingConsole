@@ -47,6 +47,18 @@ public class Canvas {
     }
 
     public void fill(Vector vector, char colour) {
+        fill(vector, colour, true);
+    }
+
+    private void fill(Vector vector, char colour, boolean firstFill) {
+        if (vectorOutsideCanvasSpace(vector)) {
+            if (firstFill) {
+                throw new IllegalArgumentException("Fill vector must be inside canvas");
+            } else {
+                return;
+            }
+        }
+
         int y = vector.getY();
         int x = vector.getX();
         if (canvas[y][x] != ' ') {
@@ -55,10 +67,10 @@ public class Canvas {
 
         canvas[y][x] = colour;
 
-        fill(new Vector(x + 1, y), colour);
-        fill(new Vector(x - 1, y), colour);
-        fill(new Vector(x, y + 1), colour);
-        fill(new Vector(x, y - 1), colour);
+        fill(new Vector(x + 1, y), colour, false);
+        fill(new Vector(x - 1, y), colour, false);
+        fill(new Vector(x, y + 1), colour, false);
+        fill(new Vector(x, y - 1), colour, false);
     }
 
     @Override
@@ -96,11 +108,15 @@ public class Canvas {
     }
 
     private void addVectorPointInsideCanvas(Vector vector, char character) {
+        if (!vectorOutsideCanvasSpace(vector)) {
+            canvas[vector.getY()][vector.getX()] = character;
+        }
+    }
+
+    private boolean vectorOutsideCanvasSpace(Vector vector) {
         int y = vector.getY();
         int x = vector.getX();
 
-        if (x > 0 && x <= width && y > 0 && y <= height) {
-            canvas[y][x] = character;
-        }
+        return (x <= 0 || x > width) || (y <= 0 || y > height);
     }
 }
