@@ -43,10 +43,19 @@ public class Canvas {
         Vector directionVector = vector2.subtract(vector1).simplify();
 
         Vector vector = vector1;
-        canvas[vector.getY()][vector.getX()] = character;
+        addPositiveVectorPoint(vector, character);
         while (!vector.equals(vector2)) {
             vector = vector.add(directionVector);
-            canvas[vector.getY()][vector.getX()] = character;
+            addPositiveVectorPoint(vector, character);
+        }
+    }
+
+    private void addPositiveVectorPoint(Vector vector, char character) {
+        int y = vector.getY();
+        int x = vector.getX();
+
+        if (x > 0 && y > 0) {
+            canvas[y][x] = character;
         }
     }
 }
