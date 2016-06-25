@@ -23,9 +23,9 @@ public class Canvas {
         canvas[0] = horizontalBorder;
         canvas[height + 1] = horizontalBorder;
 
-        char[] centerLine =  ("|" + horizontalLine(' ', width) + "|").toCharArray();
+        char[] centerLine = ("|" + horizontalLine(' ', width) + "|").toCharArray();
         for (int line = 1; line <= height; line++) {
-            canvas[line] = centerLine;
+            canvas[line] = centerLine.clone();
         }
     }
 
@@ -35,5 +35,18 @@ public class Canvas {
             lineBuilder.append(character);
         }
         return lineBuilder.toString();
+    }
+
+    public void addLine(Vector vector1, Vector vector2) {
+        char character = 'x';
+
+        Vector directionVector = new Vector(0, 1);
+
+        Vector vector = vector1;
+        canvas[vector.getY()][vector.getX()] = character;
+        while (!vector.equals(vector2)) {
+            vector = vector.add(directionVector);
+            canvas[vector.getY()][vector.getX()] = character;
+        }
     }
 }
