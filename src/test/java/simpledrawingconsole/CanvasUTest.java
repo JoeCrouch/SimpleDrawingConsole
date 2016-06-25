@@ -659,4 +659,30 @@ public class CanvasUTest {
             assertEquals("Fill vector must be inside canvas", e.getMessage());
         }
     }
+
+    @Test
+    public void fillingVectorWhichHasAlreadyBeenSetToAColourOnlyUpdatesThatVector() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, 2), new Vector(8, 8));
+        canvas.fill(new Vector(2, 3), 'c');
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "| xxxxxxx  |\n" +
+                        "| c     x  |\n" +
+                        "| x     x  |\n" +
+                        "| x     x  |\n" +
+                        "| x     x  |\n" +
+                        "| x     x  |\n" +
+                        "| xxxxxxx  |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
 }

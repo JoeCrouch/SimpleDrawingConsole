@@ -62,6 +62,9 @@ public class Canvas {
         int y = vector.getY();
         int x = vector.getX();
         if (canvas[y][x] != ' ') {
+            if (firstFill) {
+                canvas[y][x] = colour;
+            }
             return;
         }
 
