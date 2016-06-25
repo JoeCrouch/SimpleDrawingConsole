@@ -2,9 +2,50 @@ package simpledrawingconsole;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
 public class CanvasUTest {
+
+    @Test
+    public void cannotCreateCanvasWithNegativeWidth() {
+        try {
+            new Canvas(-1, 1);
+            fail("Should not be able to create canvas with negative width");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot make canvas with non positive width or height", e.getMessage());
+        }
+    }
+
+    @Test
+    public void cannotCreateCanvasWithNegativeHeight() {
+        try {
+            new Canvas(1, -1);
+            fail("Should not be able to create canvas with negative height");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot make canvas with non positive width or height", e.getMessage());
+        }
+    }
+
+    @Test
+    public void cannotCreateCanvasWithZeroWidth() {
+        try {
+            new Canvas(0, 1);
+            fail("Should not be able to create canvas with zero width");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot make canvas with non positive width or height", e.getMessage());
+        }
+    }
+
+    @Test
+    public void cannotCreateCanvasWithZeroHeight() {
+        try {
+            new Canvas(1, 0);
+            fail("Should not be able to create canvas with zero height");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot make canvas with non positive width or height", e.getMessage());
+        }
+    }
 
     @Test
     public void constructorCreatesCanvasWithExpectedBorder() {
@@ -130,7 +171,7 @@ public class CanvasUTest {
     }
 
     @Test
-    public void addingHorizontalLineStartingOutsideBordersFromLeftToRightUpdatesCanvas() {
+    public void addingHorizontalLineStartingOutsideFromLeftToRightBordersUpdatesCanvas() {
         int width = 10;
         int height = 10;
         Canvas canvas = new Canvas(width, height);
@@ -155,7 +196,7 @@ public class CanvasUTest {
     }
 
     @Test
-    public void addingHorizontalLineFinishingOutsideBordersFromRightToLeftUpdatesCanvas() {
+    public void addingHorizontalLineFinishingOutsideFromRightToLeftBordersUpdatesCanvas() {
         int width = 10;
         int height = 10;
         Canvas canvas = new Canvas(width, height);

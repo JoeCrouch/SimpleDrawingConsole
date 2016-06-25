@@ -5,6 +5,10 @@ public class Canvas {
     private final char[][] canvas;
 
     public Canvas(int width, int height) {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Cannot make canvas with non positive width or height");
+        }
+
         canvas = new char[height + 2][];
         fillInitialCanvasIncludingBorder(width, height);
     }
