@@ -47,6 +47,11 @@ public class Canvas {
     }
 
     public void addLine(Vector vector1, Vector vector2) {
+        // The logic below should actually be able to handle diagonal lines but part of the brief was to not yet support this.
+        if (isDiagonalLine(vector1, vector2)) {
+            throw new IllegalArgumentException("Cannot add diagonal lines only vertical or horizontal");
+        }
+
         char character = 'x';
 
         Vector directionVector = vector2.subtract(vector1).simplify();
@@ -57,6 +62,12 @@ public class Canvas {
             vector = vector.add(directionVector);
             addVectorPointInsideCanvas(vector, character);
         }
+    }
+
+    private boolean isDiagonalLine(Vector vector1, Vector vector2) {
+        boolean isHorizontalLine = vector1.getY() == vector2.getY();
+        boolean isVerticalLine = vector1.getX() == vector2.getX();
+        return !isHorizontalLine && !isVerticalLine;
     }
 
     private void addVectorPointInsideCanvas(Vector vector, char character) {

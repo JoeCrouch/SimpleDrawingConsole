@@ -2,8 +2,8 @@ package simpledrawingconsole;
 
 import org.junit.Test;
 
-import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CanvasUTest {
 
@@ -428,5 +428,19 @@ public class CanvasUTest {
                         "------------\n";
 
         assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingDiagonalLineThrowsIllegalArgumentException() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        try {
+            canvas.addLine(new Vector(1, 2), new Vector(3, 6));
+            fail("Should not be able to add diagonal line");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot add diagonal lines only vertical or horizontal", e.getMessage());
+        }
     }
 }
