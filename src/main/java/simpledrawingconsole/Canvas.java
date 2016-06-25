@@ -78,4 +78,14 @@ public class Canvas {
             canvas[y][x] = character;
         }
     }
+
+    public void addRectangle(Vector topCorner1, Vector bottomCorner1) {
+        Vector topCorner2 = new Vector(bottomCorner1.getX(), topCorner1.getY());
+        Vector bottomCorner2 = new Vector(topCorner1.getX(), bottomCorner1.getY());
+
+        addLine(topCorner1, topCorner2);
+        addLine(topCorner1, bottomCorner2);
+        addLine(bottomCorner1, bottomCorner2);
+        addLine(topCorner2, bottomCorner1);
+    }
 }

@@ -443,4 +443,154 @@ public class CanvasUTest {
             assertEquals("Cannot add diagonal lines only vertical or horizontal", e.getMessage());
         }
     }
+
+    @Test
+    public void addingRectangleFullyInsideCanvasUpdatesCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, 2), new Vector(5,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "| xxxx     |\n" +
+                        "| x  x     |\n" +
+                        "| x  x     |\n" +
+                        "| xxxx     |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingRectangleWithTwoVectorsOnSameLineAddsALine() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, 2), new Vector(2,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "| x        |\n" +
+                        "| x        |\n" +
+                        "| x        |\n" +
+                        "| x        |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingRectangleWithOneSideOutsideCanvasUpdatesCanvasWithValidLines() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, -2), new Vector(5,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "| x  x     |\n" +
+                        "| x  x     |\n" +
+                        "| x  x     |\n" +
+                        "| x  x     |\n" +
+                        "| xxxx     |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingRectangleWithTwoSidesOutsideCanvasUpdatesCanvasWithValidLines() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(-2, -2), new Vector(5,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|    x     |\n" +
+                        "|    x     |\n" +
+                        "|    x     |\n" +
+                        "|    x     |\n" +
+                        "|xxxxx     |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingRectangleWithThreeSidesOutsideCanvasUpdatesCanvasWithValidLines() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(-2, -2), new Vector(1,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|x         |\n" +
+                        "|x         |\n" +
+                        "|x         |\n" +
+                        "|x         |\n" +
+                        "|x         |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingRectangleWithAllSidesOutsideCanvasDoesNotUpdateCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(-2, -2), new Vector(0,5));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
 }
