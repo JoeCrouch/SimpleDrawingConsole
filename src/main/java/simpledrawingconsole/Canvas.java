@@ -2,12 +2,17 @@ package simpledrawingconsole;
 
 public class Canvas {
 
+    private final int width;
+    private final int height;
     private final char[][] canvas;
 
     public Canvas(int width, int height) {
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("Cannot make canvas with non positive width or height");
         }
+
+        this.width = width;
+        this.height = height;
 
         canvas = new char[height + 2][];
         fillInitialCanvasIncludingBorder(width, height);
@@ -47,18 +52,18 @@ public class Canvas {
         Vector directionVector = vector2.subtract(vector1).simplify();
 
         Vector vector = vector1;
-        addPositiveVectorPoint(vector, character);
+        addVectorPointInsideCanvas(vector, character);
         while (!vector.equals(vector2)) {
             vector = vector.add(directionVector);
-            addPositiveVectorPoint(vector, character);
+            addVectorPointInsideCanvas(vector, character);
         }
     }
 
-    private void addPositiveVectorPoint(Vector vector, char character) {
+    private void addVectorPointInsideCanvas(Vector vector, char character) {
         int y = vector.getY();
         int x = vector.getX();
 
-        if (x > 0 && y > 0) {
+        if (x > 0 && x <= width && y > 0 && y <= height) {
             canvas[y][x] = character;
         }
     }

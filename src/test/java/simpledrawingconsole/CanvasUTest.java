@@ -171,7 +171,7 @@ public class CanvasUTest {
     }
 
     @Test
-    public void addingHorizontalLineStartingOutsideFromLeftToRightBordersUpdatesCanvas() {
+    public void addingHorizontalLineStartingOutsideBordersFromLeftToRightUpdatesCanvas() {
         int width = 10;
         int height = 10;
         Canvas canvas = new Canvas(width, height);
@@ -196,7 +196,7 @@ public class CanvasUTest {
     }
 
     @Test
-    public void addingHorizontalLineFinishingOutsideFromRightToLeftBordersUpdatesCanvas() {
+    public void addingHorizontalLineFinishingOutsideBordersFromRightToLeftUpdatesCanvas() {
         int width = 10;
         int height = 10;
         Canvas canvas = new Canvas(width, height);
@@ -209,6 +209,216 @@ public class CanvasUTest {
                         "|          |\n" +
                         "|          |\n" +
                         "|xxxxx     |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+
+    @Test
+    public void addingHorizontalLineStartingOutsideBordersFromRightToLeftUpdatesCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(7, 3), new Vector(2, 3));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|     |\n" +
+                        "| xxxx|\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingHorizontalLineFinishingOutsideBordersFromLeftToRightUpdatesCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(2, 3), new Vector(7, 3));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|     |\n" +
+                        "| xxxx|\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineStartingOutsideBordersFromTopToBottomUpdatesCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(3, -4), new Vector(3, 6));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineFinishingOutsideBordersFromBottomToTopUpdatesCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(3, 6), new Vector(3, -4));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+
+    @Test
+    public void addingVerticalLineStartingOutsideBordersFromBottomToTopUpdatesCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(1, 6), new Vector(1, 2));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|x    |\n" +
+                        "|x    |\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineFinishingOutsideBordersFromTopToBottomUpdatesCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(1, 2), new Vector(1, 6));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|x    |\n" +
+                        "|x    |\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingHorizontalLineStartingAndFinishingOutsideBordersButCrossesCanvasUpdatesCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(-7, 3), new Vector(7, 3));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|     |\n" +
+                        "|xxxxx|\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineStartingAndFinishingOutsideBordersButCrossesCanvasUpdatesCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(3, 24), new Vector(3, -4));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "|  x       |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingHorizontalLineStartingAndFinishingOutsideBordersAndDoesNotCrossCanvasDoesNotUpdateCanvas() {
+        int width = 5;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(-7, 4), new Vector(7, 4));
+
+        String expectedCanvas =
+                "-------\n" +
+                        "|     |\n" +
+                        "|     |\n" +
+                        "|     |\n" +
+                        "-------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineStartingAndFinishingOutsideBordersAndDoesNotCrossCanvasDoesNotUpdateCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(0, 24), new Vector(0, -4));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
                         "|          |\n" +
                         "|          |\n" +
                         "|          |\n" +
