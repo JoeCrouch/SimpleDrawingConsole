@@ -44,7 +44,7 @@ public class CanvasUTest {
     }
 
     @Test
-    public void addingVerticalLineWithinBordersUpdatesCanvas() {
+    public void addingVerticalLineWithinBordersFromTopToBottomUpdatesCanvas() {
         int width = 3;
         int height = 10;
         Canvas canvas = new Canvas(width, height);
@@ -64,6 +64,31 @@ public class CanvasUTest {
                         "|   |\n" +
                         "|   |\n" +
                         "-----\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingVerticalLineWithinBordersFromBottomToTopUpdatesCanvas() {
+        int width = 4;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(2, 6), new Vector(2, 1));
+
+        String expectedCanvas =
+                "------\n" +
+                        "| x  |\n" +
+                        "| x  |\n" +
+                        "| x  |\n" +
+                        "| x  |\n" +
+                        "| x  |\n" +
+                        "| x  |\n" +
+                        "|    |\n" +
+                        "|    |\n" +
+                        "|    |\n" +
+                        "|    |\n" +
+                        "------\n";
 
         assertEquals(expectedCanvas, canvas.toString());
     }
