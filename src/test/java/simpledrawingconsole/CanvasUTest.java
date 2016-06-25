@@ -450,7 +450,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(2, 2), new Vector(5,5));
+        canvas.addRectangle(new Vector(2, 2), new Vector(5, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -475,7 +475,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(2, 2), new Vector(2,5));
+        canvas.addRectangle(new Vector(2, 2), new Vector(2, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -500,7 +500,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(2, -2), new Vector(5,5));
+        canvas.addRectangle(new Vector(2, -2), new Vector(5, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -525,7 +525,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(-2, -2), new Vector(5,5));
+        canvas.addRectangle(new Vector(-2, -2), new Vector(5, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -550,7 +550,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(-2, -2), new Vector(1,5));
+        canvas.addRectangle(new Vector(-2, -2), new Vector(1, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -575,7 +575,7 @@ public class CanvasUTest {
         int height = 10;
         Canvas canvas = new Canvas(width, height);
 
-        canvas.addRectangle(new Vector(-2, -2), new Vector(0,5));
+        canvas.addRectangle(new Vector(-2, -2), new Vector(0, 5));
 
         String expectedCanvas =
                 "------------\n" +
@@ -587,6 +587,32 @@ public class CanvasUTest {
                         "|          |\n" +
                         "|          |\n" +
                         "|          |\n" +
+                        "|          |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void fillingRectangleInsideCanvasOnlyUpdatesEmptySpaceWithinRectangleOnCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, 2), new Vector(8, 8));
+        canvas.fill(new Vector(3, 3), 'c');
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "| xxxxxxx  |\n" +
+                        "| xcccccx  |\n" +
+                        "| xcccccx  |\n" +
+                        "| xcccccx  |\n" +
+                        "| xcccccx  |\n" +
+                        "| xcccccx  |\n" +
+                        "| xxxxxxx  |\n" +
                         "|          |\n" +
                         "|          |\n" +
                         "------------\n";
