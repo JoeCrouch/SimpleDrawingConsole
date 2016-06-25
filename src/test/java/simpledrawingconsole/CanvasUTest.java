@@ -92,4 +92,40 @@ public class CanvasUTest {
 
         assertEquals(expectedCanvas, canvas.toString());
     }
+
+    @Test
+    public void addingHorizontalLineWithinBordersFromLeftToRightUpdatesCanvas() {
+        int width = 10;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(1, 2), new Vector(4, 2));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "|xxxx      |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
+
+    @Test
+    public void addingHorizontalLineWithinBordersFromRightToLeftUpdatesCanvas() {
+        int width = 10;
+        int height = 3;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addLine(new Vector(4, 2), new Vector(1, 2));
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|          |\n" +
+                        "|xxxx      |\n" +
+                        "|          |\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
 }

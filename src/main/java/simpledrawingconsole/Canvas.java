@@ -40,8 +40,7 @@ public class Canvas {
     public void addLine(Vector vector1, Vector vector2) {
         char character = 'x';
 
-        boolean vector2Lower = vector2.getY() > vector1.getY();
-        Vector directionVector = vector2Lower ? new Vector(0, 1) : new Vector(0, -1);
+        Vector directionVector = vector2.subtract(vector1).simplify();
 
         Vector vector = vector1;
         canvas[vector.getY()][vector.getX()] = character;
