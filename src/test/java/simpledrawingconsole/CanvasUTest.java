@@ -619,4 +619,30 @@ public class CanvasUTest {
 
         assertEquals(expectedCanvas, canvas.toString());
     }
+
+    @Test
+    public void fillingOutsideOfRectangleInsideCanvasOnlyUpdatesEmptySpaceOutsideRectangleOnCanvas() {
+        int width = 10;
+        int height = 10;
+        Canvas canvas = new Canvas(width, height);
+
+        canvas.addRectangle(new Vector(2, 2), new Vector(8, 8));
+        canvas.fill(new Vector(10, 10), 'f');
+
+        String expectedCanvas =
+                "------------\n" +
+                        "|ffffffffff|\n" +
+                        "|fxxxxxxxff|\n" +
+                        "|fx     xff|\n" +
+                        "|fx     xff|\n" +
+                        "|fx     xff|\n" +
+                        "|fx     xff|\n" +
+                        "|fx     xff|\n" +
+                        "|fxxxxxxxff|\n" +
+                        "|ffffffffff|\n" +
+                        "|ffffffffff|\n" +
+                        "------------\n";
+
+        assertEquals(expectedCanvas, canvas.toString());
+    }
 }
